@@ -1,6 +1,44 @@
-img {
+.PersonList img {
   width: 200px;
   height: 300px;
   border-radius: 100%;
   object-fit: contain;
+}
+.PersonList ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-left: 10px;
+  margin: 100px
+}
+
+.PersonList ul li {
+  margin-left: -10px;
+  display: flex;
+  align-items: center;
+}
+
+.PersonList ul li::before {
+  color: transparent;
+  font-size: 1px;
+  content: " ";
+  margin-left: -1.3em;
+  padding: 10px;
+  background-color: orange;
+}
+.PersonList li:hover {
+  font-size: 15px;
+  -webkit-box-shadow: 0px #000000; 
+  box-shadow: 5px 5px 15px 0px #000000;
+
+}
+
+.PersonData div{
+  border: 5px outset #051724;
+  margin-left: 200px;
+  margin-right: 200px;
+  border-radius: 40px;
+
+}
+.PersonData p{
+  text-align: center;
 }
