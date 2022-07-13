@@ -1,33 +1,40 @@
 import {useState, createContext, useContext} from "react";
 import './App.css';
-import Load from "./Load";
 import useFetch from "./useFetch";
 
 const UserContext = createContext()
 const url = 'https://node-js-server.dvirko.repl.co/';
 
 const App = () => {
+  const [images] = useFetch(url+'images');
+
   return(
     <>
-      <div class="PersonList">
+      <div>
+          {images && 
+          images.map((item,i) => {
+             return <img alt={i} src={item.image}></img>;
+          })}
+      </div>
+      <div class="grid-container">
         <PersonList/>
       </div>
     </>
   );
 }
 const PersonList = () => {
-    const [data] = useFetch(url);
+    const [data] = useFetch(url+'person');
     const [person,SetPerson] = useState("");
 
     return (
         <UserContext.Provider value={person}>
-        <ul>
-        {data && 
+        <div class="PersonList item2 border">
+          {data && 
           data.map((person,i) => {
-             return <li key={i} onClick={()=>SetPerson(person)}>{person.name}</li>;
+             return <img key={i} src={person.image} alt={person.name}onClick={()=>SetPerson(person)}></img>;
           })}
-          </ul>
-          {data?<div class="PersonData"><PersonData/></div>:<Load/>}
+          </div>
+        <PersonData/>
         </UserContext.Provider>
     );
   };
@@ -35,14 +42,18 @@ const PersonList = () => {
 const PersonData = () => {
   const data = useContext(UserContext);
   return(
-    <div>
-       {data && Object.keys(data).map((key, index) => {
-        return (
-          <p key={index}>
-              {key}:{data[key]}
+    <div class="PersonData item1 border">
+          <img src={data['image']} alt={data['name']}></img>
+          <p>
+            <h1>{data['name']} {data['lastName']}</h1>
+            <h4>{data['job']}</h4>
+            <h5>
+              {data['age']} : גיל
+              <br />
+              {data['address']}
+              <br />
+              {data['education']}</h5>
           </p>
-        );
-      })}
     </div>
   );
 }

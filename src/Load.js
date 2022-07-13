@@ -1,7 +1,10 @@
 import './Load.css'
 const Load = () => {
     return (
-        <div class="loader"/>
+        <>
+        <div id="loader"></div>
+        <div id="loader-text">Loading...</div>
+        </>
     );
 
 }
