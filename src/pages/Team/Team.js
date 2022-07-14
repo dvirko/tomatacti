@@ -1,33 +1,28 @@
 import {useState, createContext, useContext} from "react";
-import Load from "./Load";
-import './App.css';
-import useFetch from "./useFetch";
+import Load from "../Load/Load.js";
+import './Team.css';
+import useFetch from "../../useFetch";
 
 const UserContext = createContext()
 const url = 'https://node-js-server.dvirko.repl.co/';
 
-const App = () => {
-  const [images] = useFetch(url+'images');
-
+const Team = () => {
+  const [data] = useFetch(url+'person');
   return(
     <>
-      <div>
-          {images && 
-          images.map((item,i) => {
-             return <img alt={i} src={item.image}></img>;
-          })}
-      </div>
-      {images?
+    {data?
+      <UserContext.Provider value={data}>
       <div class="grid-container">
         <PersonList/>
       </div>
+      </UserContext.Provider>
       :<Load/>
-      }
+    }
     </>
   );
 }
 const PersonList = () => {
-    const [data] = useFetch(url+'person');
+  const data = useContext(UserContext);
     const [person,SetPerson] = useState("");
 
     return (
@@ -62,4 +57,4 @@ const PersonData = () => {
   );
 }
 
-export default App
+export default Team

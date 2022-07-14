@@ -3,7 +3,7 @@ const Load = () => {
     return (
         <>
         <div id="loader"></div>
-        <div id="loader-text">Loading...</div>
+        <div id="loader-text">. . . טוען</div>
         </>
     );
 

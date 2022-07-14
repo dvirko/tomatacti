@@ -50,7 +50,7 @@ img {
   cursor: pointer;
 }
 .PersonList img:hover{
-  border-color: green;
+  border-color: #FFFC00;
 }
 
 .PersonData img {
