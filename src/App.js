@@ -1,4 +1,5 @@
 import {useState, createContext, useContext} from "react";
+import Load from "./Load";
 import './App.css';
 import useFetch from "./useFetch";
 
@@ -16,9 +17,12 @@ const App = () => {
              return <img alt={i} src={item.image}></img>;
           })}
       </div>
+      {images?
       <div class="grid-container">
         <PersonList/>
       </div>
+      :<Load/>
+      }
     </>
   );
 }
